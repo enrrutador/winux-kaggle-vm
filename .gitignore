@@ -1,0 +1,12 @@
+# Binarios grandes: nunca al repo. Se re-descargan / recrean por sesión.
+*.iso
+*.qcow2
+*.qcow2c
+*.log
+*.png
+OVMF_VARS*.fd
+*.sock
+/tmp/
+dl.log
+winux-serial.log
+winux-qemu.log
