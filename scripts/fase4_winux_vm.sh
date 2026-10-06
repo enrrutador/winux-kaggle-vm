@@ -11,6 +11,9 @@
 set -eu
 
 DIR="${DIR:-/tmp/vmtest}"
+# Recomendado en Kaggle: DIR=/kaggle/working/vmdata (sobrevive reciclajes del
+# contenedor; /tmp se pierde junto con los paquetes apt). 19GB libres alcanzan
+# justo para ISO (6.3GB) + qcow2 dinámico.
 ISO_URL="${ISO_URL:-https://sourceforge.net/projects/windows-linux/files/latest/download}"
 RAM_MB="${RAM_MB:-8192}"
 VCPUS="${VCPUS:-4}"

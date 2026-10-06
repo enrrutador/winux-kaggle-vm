@@ -15,8 +15,15 @@ Origen: investigación `investigacion-windows-kaggle/` — KVM confirmado NO via
 | `winux.qcow2` (60GB) | **NO** en GitHub — scratch `/tmp/vmtest` + snapshot opcional en Kaggle Dataset | Efímero por diseño; cada sesión rehidrata |
 | Estado OpenCode/sesiones | Kaggle Dataset `opencode-cloud-state` (flow existente) | Ya funciona vía workstation v9 |
 
-**Este repo no mantiene viva la VM** (Kaggle mata sesiones a las ~9-12h).
-Lo que sí hace: que cualquier sesión nueva levante el lab idéntico con 2 comandos.
+**Este repo no mantiene viva la VM** (Kaggle recicla el contenedor: se pierde `/tmp`
+y los paquetes apt — verificado 2026-10-06). Lo que sí hace: rehidratar el lab idéntico.
+Persistencia real por capas:
+
+1. **Código** → este repo.
+2. **ISO (6.3GB)** → `/kaggle/working/vmdata/` (sobrevive reciclajes; se descarga una sola vez).
+   Solo el `qcow2` + ISO viven ahí: 19GB libres alcanzan justo (ISO 6.3GB + qcow2 dinámico).
+3. **QEMU/apt** → se reinstala en ~1 min por bootstrap (`fase4` lo hace solo si falta).
+4. **Estado OpenCode/sesiones** → Kaggle Dataset `opencode-cloud-state` (flow workstation v9).
 
 ## Uso
 
